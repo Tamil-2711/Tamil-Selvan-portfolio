@@ -54,7 +54,7 @@ section{position:relative;z-index:1;padding:6rem 2rem}
 .hero-right{display:flex;justify-content:center;align-items:center}
 .profile-frame{position:relative;width:300px;height:300px}
 .profile-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--primary),var(--accent),var(--secondary),var(--primary));padding:3px;animation:spin-ring 8s linear infinite}
-@keyframes spin-ring{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fixed-ring{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .profile-inner{width:100%;height:100%;border-radius:50%;background:var(--bg-mid);overflow:hidden;position:relative;z-index:1}
 .profile-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
 .profile-inner .profile-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;font-family:'Orbitron',monospace;color:var(--primary);text-shadow:var(--glow-lg);background:var(--bg-mid)}
@@ -201,9 +201,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
           <div class="profile-ring">
             <div class="profile-inner">
               <img src="profile.jpg" alt="Tamil Selvan S">
-            </div>
           </div>
-          <div class="profile-badge">IETE Secretary</div>
         </div>
       </div>
     </div>
