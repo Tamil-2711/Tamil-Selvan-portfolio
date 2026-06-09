@@ -55,12 +55,11 @@ section{position:relative;z-index:1;padding:6rem 2rem}
 .profile-frame{position:relative;width:300px;height:300px}
 .profile-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--primary),var(--accent),var(--secondary),var(--primary));padding:3px;animation:spin-ring 8s linear infinite}
 @keyframes spin-ring{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.profile-inner{width:100%;height:100%;border-radius:50%;background:var(--bg-mid);display:flex;align-items:center;justify-content:center;font-size:5rem;font-family:'Orbitron',monospace;color:var(--primary);text-shadow:var(--glow-lg);position:relative;z-index:1}
+.profile-inner{width:100%;height:100%;border-radius:50%;background:var(--bg-mid);overflow:hidden;position:relative;z-index:1}
+.profile-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.profile-inner .profile-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;font-family:'Orbitron',monospace;color:var(--primary);text-shadow:var(--glow-lg);background:var(--bg-mid)}
 .profile-badge{position:absolute;bottom:-10px;right:10px;background:linear-gradient(135deg,var(--accent),var(--secondary));color:white;padding:.4rem .8rem;border-radius:20px;font-size:.72rem;font-weight:700;z-index:2}
-.float-stats{position:absolute;left:-70px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.8rem}
-.fstat{background:var(--card-bg);border:1px solid var(--border);padding:.5rem .8rem;border-radius:8px;text-align:center;backdrop-filter:blur(10px);font-family:'JetBrains Mono',monospace}
-.fstat-val{font-size:1.3rem;font-weight:700;color:var(--primary);display:block}
-.fstat-lbl{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+
 #about{background:rgba(6,15,30,.4)}
 .about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start}
 .about-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:2.5rem;backdrop-filter:blur(20px);position:relative;overflow:hidden}
@@ -156,7 +155,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
   .hero-inner,.about-grid,.intern-grid,.skills-grid{grid-template-columns:1fr}
   .edu-item{grid-template-columns:80px 1fr;gap:1rem}
   .contact-grid{grid-template-columns:1fr}
-  .float-stats{display:none}
   .profile-frame{width:240px;height:240px}
   .hero-right{order:-1}
 }
@@ -199,16 +197,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
     </div>
     <div class="hero-right">
       <div style="position:relative;display:inline-block">
-        <div class="float-stats">
-          <div class="fstat"><span class="fstat-val">7.76</span><span class="fstat-lbl">CGPA</span></div>
-          <div class="fstat"><span class="fstat-val">5+</span><span class="fstat-lbl">Projects</span></div>
-          <div class="fstat"><span class="fstat-val">2027</span><span class="fstat-lbl">Grad</span></div>
-        </div>
         <div class="profile-frame">
           <div class="profile-ring">
-            <div class="profile-inner">TS</div>
+            <div class="profile-inner">
+              <!-- Replace src with your photo path e.g. src="photo.jpg" -->
+              <div class="profile.jpg"></div>
+            </div>
           </div>
-          <div class="profile-badge">IETE Secretary</div>
         </div>
       </div>
     </div>
