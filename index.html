@@ -54,7 +54,7 @@ section{position:relative;z-index:1;padding:6rem 2rem}
 .hero-right{display:flex;justify-content:center;align-items:center}
 .profile-frame{position:relative;width:300px;height:300px}
 .profile-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--primary),var(--accent),var(--secondary),var(--primary));padding:3px;animation:spin-ring 8s linear infinite}
-@keyframes spin-ring{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fixed-ring{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .profile-inner{width:100%;height:100%;border-radius:50%;background:var(--bg-mid);overflow:hidden;position:relative;z-index:1}
 .profile-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
 
@@ -536,14 +536,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
         <div class="vp-wave"></div>
       </div>
     </div>
-    <div class="vp-transcript-box">
-      <span class="vp-box-label">You Said</span>
-      <div class="vp-box-text" id="vpTranscript"><span class="vp-placeholder">Your speech appears here...</span></div>
-    </div>
-    <div class="vp-response-box">
-      <span class="vp-box-label">Response</span>
-      <div class="vp-box-text" id="vpResponse"><span class="vp-placeholder">Tamil's answer appears here...</span></div>
-    </div>
     <div class="vp-error" id="vpError"></div>
     <div class="vp-commands">
       <span class="vp-cmd-title">📋 Try Saying</span>
@@ -789,7 +781,7 @@ function closeVoicePanel(){
 
 /* ===================== VOICE ASSISTANT LOGIC ===================== */
 const VP_DATA={
-  hello:"Hi! I'm Tamil Selvan S — an Electronics and Communication Engineering student specializing in Embedded Systems, IoT Development, and AI-powered hardware. Currently serving as IETE Secretary 2026-2027. How can I help you?",
+  hello:"Hi! I'm Tamil Selvan S — an Electronics and Communication Engineering student specializing in Embedded Systems, IoT Development, and AI-powered hardware.,
   skills:"I'm skilled in Embedded C and C++, Arduino and ESP32, Python, PCB Design with KiCad, MATLAB, Proteus, Raspberry Pi, STM32, Sensor Interfacing, and Hardware Testing. Core domains: Embedded Systems, IoT, Robotics, and AI integration.",
   projects:"I have 5 major projects: (1) Smart Animal Repellent using YOLOv8, (2) Automated Attendance with Face Recognition, (3) Multi-Functional Drone with PID Stabilization, (4) Aerogel Fire Resistant Suit with Thermal Monitoring, and (5) Smart Solar Agriculture Monitoring System.",
   contact:"Reach me at +91 93458 41834, email tamilsomasundaram2005 at gmail dot com, or connect on LinkedIn at tamil-selvan-s-bb259b318.",
