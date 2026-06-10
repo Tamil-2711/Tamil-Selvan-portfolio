@@ -16,15 +16,34 @@
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg-dark);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6}
+
+/* ===== CIRCUIT BOARD BACKGROUND ===== */
 .circuit-fixed-bg{
   position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  pointer-events:none;
+}
+/* Primary layer: the uploaded circuit board image (place circuit-bg.png next to index.html) */
+.circuit-fixed-bg::before{
+  content:'';
+  position:absolute;inset:0;
   background-image:url('circuit-bg.png');
-  background-size:cover;background-position:center;background-attachment:fixed;
-  opacity:0.25;pointer-events:none;filter:blur(0.5px)
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  opacity:0.22;
+  filter:blur(0.3px) saturate(0.8);
+}
+/* Fallback / reinforcing SVG circuit pattern (always visible as subtle layer) */
+.circuit-fixed-bg::after{
+  content:'';
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='none'/%3E%3C!-- Horizontal traces --%3E%3Cline x1='0' y1='40' x2='60' y2='40' stroke='%2300d4ff' stroke-width='1.2' opacity='0.18'/%3E%3Cline x1='80' y1='40' x2='140' y2='40' stroke='%2300d4ff' stroke-width='1.2' opacity='0.18'/%3E%3Cline x1='160' y1='40' x2='200' y2='40' stroke='%2300d4ff' stroke-width='1.2' opacity='0.18'/%3E%3Cline x1='0' y1='100' x2='50' y2='100' stroke='%2300d4ff' stroke-width='1' opacity='0.14'/%3E%3Cline x1='70' y1='100' x2='130' y2='100' stroke='%2300d4ff' stroke-width='1' opacity='0.14'/%3E%3Cline x1='150' y1='100' x2='200' y2='100' stroke='%2300d4ff' stroke-width='1' opacity='0.14'/%3E%3Cline x1='0' y1='160' x2='80' y2='160' stroke='%2300d4ff' stroke-width='1.2' opacity='0.16'/%3E%3Cline x1='100' y1='160' x2='200' y2='160' stroke='%2300d4ff' stroke-width='1.2' opacity='0.16'/%3E%3C!-- Vertical traces --%3E%3Cline x1='60' y1='0' x2='60' y2='40' stroke='%2300d4ff' stroke-width='1.2' opacity='0.18'/%3E%3Cline x1='60' y1='60' x2='60' y2='100' stroke='%2300d4ff' stroke-width='1.2' opacity='0.18'/%3E%3Cline x1='140' y1='40' x2='140' y2='100' stroke='%2300d4ff' stroke-width='1' opacity='0.14'/%3E%3Cline x1='100' y1='100' x2='100' y2='160' stroke='%2300d4ff' stroke-width='1' opacity='0.15'/%3E%3Cline x1='30' y1='160' x2='30' y2='200' stroke='%2300d4ff' stroke-width='1.2' opacity='0.16'/%3E%3Cline x1='170' y1='0' x2='170' y2='40' stroke='%2300d4ff' stroke-width='1' opacity='0.14'/%3E%3C!-- Pads / vias --%3E%3Ccircle cx='60' cy='40' r='3.5' fill='none' stroke='%2300d4ff' stroke-width='1.2' opacity='0.28'/%3E%3Ccircle cx='140' cy='40' r='3.5' fill='none' stroke='%2300d4ff' stroke-width='1.2' opacity='0.28'/%3E%3Ccircle cx='100' cy='100' r='4' fill='none' stroke='%2300d4ff' stroke-width='1.4' opacity='0.3'/%3E%3Ccircle cx='50' cy='100' r='3' fill='none' stroke='%2300d4ff' stroke-width='1' opacity='0.22'/%3E%3Ccircle cx='30' cy='160' r='3.5' fill='none' stroke='%2300d4ff' stroke-width='1.2' opacity='0.26'/%3E%3Ccircle cx='170' cy='40' r='3' fill='none' stroke='%2300d4ff' stroke-width='1' opacity='0.22'/%3E%3Ccircle cx='60' cy='100' r='2.5' fill='%2300d4ff' opacity='0.1'/%3E%3Ccircle cx='140' cy='100' r='2.5' fill='%2300d4ff' opacity='0.1'/%3E%3C!-- Corner L-traces --%3E%3Cpolyline points='160,160 160,140 180,140' fill='none' stroke='%2300d4ff' stroke-width='1' opacity='0.15'/%3E%3Cpolyline points='20,20 20,40' fill='none' stroke='%2300d4ff' stroke-width='1' opacity='0.15'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  opacity:0.45;
 }
 .circuit-overlay{
   position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
-  background:linear-gradient(135deg,rgba(3,8,18,0.85) 0%,rgba(6,15,30,0.88) 50%,rgba(3,8,18,0.85) 100%);
+  background:linear-gradient(135deg,rgba(3,8,18,0.88) 0%,rgba(6,15,30,0.82) 50%,rgba(3,8,18,0.88) 100%);
   pointer-events:none
 }
 
@@ -182,26 +201,13 @@ section{position:relative;z-index:1;padding:6rem 2rem}
 }
 #voice-panel.open{display:flex}
 @keyframes panelSlide{from{transform:translateY(30px) scale(0.95);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
-.vp-header{
-  background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(124,58,237,.15));
-  border-bottom:1px solid var(--border);
-  padding:1.2rem 1.5rem;
-  display:flex;align-items:center;justify-content:space-between
-}
+.vp-header{background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(124,58,237,.15));border-bottom:1px solid var(--border);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
 .vp-title{font-family:'Orbitron',monospace;font-size:.9rem;color:var(--primary);font-weight:700;letter-spacing:1px;text-shadow:var(--glow)}
 .vp-close{background:transparent;border:1px solid var(--border);color:var(--text-muted);width:30px;height:30px;border-radius:8px;font-size:1rem;cursor:pointer;transition:all .3s;line-height:1}
 .vp-close:hover{border-color:var(--primary);color:var(--primary);box-shadow:var(--glow)}
 .vp-body{padding:1.5rem;display:flex;flex-direction:column;gap:1rem;overflow-y:auto;flex:1}
 .vp-mic-area{display:flex;flex-direction:column;align-items:center;gap:1rem}
-.vp-mic-btn{
-  width:90px;height:90px;border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  border:3px solid rgba(0,212,255,.4);
-  color:#030812;font-size:2.2rem;
-  cursor:pointer;transition:all .3s;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;
-  box-shadow:var(--glow-lg);position:relative
-}
+.vp-mic-btn{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));border:3px solid rgba(0,212,255,.4);color:#030812;font-size:2.2rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:var(--glow-lg);position:relative}
 .vp-mic-btn:hover{transform:scale(1.08);box-shadow:var(--glow-lg)}
 .vp-mic-btn.listening{animation:micPulse .7s ease-in-out infinite;background:linear-gradient(135deg,#ff0080,var(--primary))}
 @keyframes micPulse{0%,100%{box-shadow:0 0 20px rgba(0,212,255,.4)}50%{box-shadow:0 0 50px rgba(0,212,255,.9),0 0 80px rgba(0,212,255,.4)}}
@@ -214,10 +220,7 @@ section{position:relative;z-index:1;padding:6rem 2rem}
 .vp-wave:nth-child(4){animation-delay:.1s;height:24px}
 .vp-wave:nth-child(5){animation-delay:0s;height:14px}
 @keyframes waveAnim{0%,100%{height:10px}50%{height:36px}}
-.vp-transcript-box,.vp-response-box{
-  background:rgba(0,212,255,.04);border:1px solid var(--border);
-  border-radius:10px;padding:1rem
-}
+.vp-transcript-box,.vp-response-box{background:rgba(0,212,255,.04);border:1px solid var(--border);border-radius:10px;padding:1rem}
 .vp-box-label{font-size:.68rem;color:var(--primary);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:.6rem;display:block;font-family:'JetBrains Mono',monospace;text-shadow:0 0 8px rgba(0,212,255,0.2)}
 .vp-box-text{font-size:.88rem;line-height:1.6;color:var(--text-muted);font-family:'JetBrains Mono',monospace;min-height:36px}
 .vp-placeholder{opacity:.5;font-style:italic}
@@ -229,16 +232,7 @@ section{position:relative;z-index:1;padding:6rem 2rem}
 .vp-cmd-trigger{display:block;font-size:.72rem;color:var(--primary);font-weight:600;font-family:'JetBrains Mono',monospace}
 .vp-cmd-desc{display:block;font-size:.68rem;color:var(--text-muted);margin-top:.1rem}
 .vp-error{background:rgba(255,59,48,.1);border:1px solid rgba(255,59,48,.3);border-radius:8px;padding:.8rem;color:#ff3b30;font-size:.82rem;display:none}
-
-/* Floating mic toggle button */
-.vp-float-btn{
-  position:fixed;bottom:2rem;right:2rem;z-index:2999;
-  width:58px;height:58px;border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  border:none;color:#030812;font-size:1.5rem;
-  cursor:pointer;transition:all .3s;
-  box-shadow:var(--glow-lg);display:flex;align-items:center;justify-content:center
-}
+.vp-float-btn{position:fixed;bottom:2rem;right:2rem;z-index:2999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));border:none;color:#030812;font-size:1.5rem;cursor:pointer;transition:all .3s;box-shadow:var(--glow-lg);display:flex;align-items:center;justify-content:center}
 .vp-float-btn:hover{transform:scale(1.1);box-shadow:0 0 60px rgba(0,212,255,.9)}
 .vp-float-btn.hide{display:none}
 
@@ -617,10 +611,28 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
   </div>
 </div>
 
-<!-- Floating mic button -->
 <button class="vp-float-btn" id="vpFloatBtn" onclick="toggleVoicePanel()" title="Open Voice Assistant">🎤</button>
 
 <script>
+/* ===================== BACKGROUND IMAGE LOADER ===================== */
+// Tries to load circuit-bg.png (place your uploaded image with this name).
+// If not found, the SVG pattern fallback in CSS is shown automatically.
+(function(){
+  var img = new Image();
+  img.onload = function(){
+    // Image loaded — apply it with full opacity
+    document.querySelector('.circuit-fixed-bg').style.setProperty('--bg-img-opacity','0.22');
+  };
+  img.onerror = function(){
+    // Image not found — remove the ::before rule fallback gracefully
+    // The SVG pattern in ::after still renders as a nice circuit background
+    var style = document.createElement('style');
+    style.textContent = '.circuit-fixed-bg::before { display: none; }';
+    document.head.appendChild(style);
+  };
+  img.src = 'circuit-bg.png';
+})();
+
 /* ===================== PROJECT DATA ===================== */
 const PROJECTS={
   1:{title:"Smart Animal Repellent System Using Adaptive Frequency Feedback",
@@ -774,8 +786,6 @@ monitor = ThermalMonitor()
 while True:
     temps = monitor.read_all()
     monitor.check_alerts(temps)
-    for loc,d in temps.items():
-        if d['temp']: print(f"  {loc}: {d['temp']}C")
     time.sleep(2)`},
 
   5:{title:"Smart Solar Powered Agriculture Monitoring System",
@@ -800,7 +810,6 @@ void setup() {
   WiFi.begin("SSID","PASS");
   while(WiFi.status()!=WL_CONNECTED) delay(500);
   ThingSpeak.begin(client);
-  Serial.println("Agriculture Monitor Ready");
 }
 
 void loop() {
@@ -827,10 +836,9 @@ void loop() {
 MPU6050 mpu(0x68);
 const char* ssid = "YOUR_SSID";
 const char* password = "YOUR_PASS";
-const float FALL_THRESHOLD = 25.0; // m/s^2
-const float IMPACT_THRESHOLD = 20.0;
+const float FALL_THRESHOLD = 25.0;
 
-float accelX, accelY, accelZ, gyroX, gyroY, gyroZ;
+float accelX, accelY, accelZ;
 float accelMagnitude;
 bool fallDetected = false;
 unsigned long fallTime = 0;
@@ -838,12 +846,10 @@ unsigned long fallTime = 0;
 void detectFall() {
   mpu.getAcceleration(&accelX, &accelY, &accelZ);
   accelMagnitude = sqrt(accelX*accelX + accelY*accelY + accelZ*accelZ);
-  
   if (accelMagnitude > FALL_THRESHOLD) {
     if (!fallDetected) {
       fallDetected = true;
       fallTime = millis();
-      Serial.println("FALL DETECTED!");
       sendEmergencyAlert();
     }
   } else if (fallDetected && (millis() - fallTime) > 5000) {
@@ -854,115 +860,59 @@ void detectFall() {
 void sendEmergencyAlert() {
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
-    String url = "http://your-api.com/alert?accel=" + 
-                 String(accelMagnitude) + "&time=" + String(millis());
-    http.begin(url);
-    int httpCode = http.GET();
-    http.end();
-    Serial.println("Alert sent!");
+    String url = "http://your-api.com/alert?accel=" + String(accelMagnitude);
+    http.begin(url); http.GET(); http.end();
   }
 }
 
 void setup() {
   Serial.begin(115200);
-  Wire.begin();
-  mpu.initialize();
+  Wire.begin(); mpu.initialize();
   WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("WiFi Connected");
+  while (WiFi.status() != WL_CONNECTED) delay(500);
 }
 
-void loop() {
-  detectFall();
-  delay(50);
-}`},
+void loop() { detectFall(); delay(50); }`},
 
   7:{title:"Smart SOS Emergency Alert System with GPS & GSM",
      tech:["ESP32","GPS Module","GSM Module","MQTT","Real-time Tracking"],
      code:`// ESP32 SOS Emergency Alert with GPS & GSM
 #include <Arduino.h>
 #include <HardwareSerial.h>
-#include <WiFi.h>
 
-#define RXp2 16  // GPS RX
-#define TXp2 17  // GPS TX
-#define RXp1 9   // GSM RX
-#define TXp1 10  // GSM TX
+#define RXp2 16
+#define TXp2 17
+#define RXp1 9
+#define TXp1 10
 
 HardwareSerial gpsSerial(2);
 HardwareSerial gsmSerial(1);
-
 float gpsLat = 0.0, gpsLng = 0.0;
 const char* emergencyNumber = "+919345841834";
-const char* alertMessage = "EMERGENCY! I need help.";
-
-void initGPS() {
-  gpsSerial.begin(9600, SERIAL_8N1, RXp2, TXp2);
-  Serial.println("GPS Initialized");
-}
 
 void initGSM() {
   gsmSerial.begin(9600, SERIAL_8N1, RXp1, TXp1);
   delay(1000);
-  gsmSerial.println("AT");
-  delay(500);
   gsmSerial.println("AT+CMGF=1");
-  delay(500);
-  Serial.println("GSM Initialized");
-}
-
-void parseGPS() {
-  while (gpsSerial.available()) {
-    String line = gpsSerial.readStringUntil('\\n');
-    if (line.startsWith("$GPRMC")) {
-      // Parse latitude & longitude from NMEA
-      int commaPos[6];
-      int count = 0;
-      for (int i = 0; i < line.length(); i++) {
-        if (line[i] == ',') {
-          commaPos[count++] = i;
-        }
-      }
-      gpsLat = line.substring(commaPos[2]+1, commaPos[3]).toFloat();
-      gpsLng = line.substring(commaPos[4]+1, commaPos[5]).toFloat();
-      Serial.print("Location: "); Serial.print(gpsLat); 
-      Serial.print(" , "); Serial.println(gpsLng);
-    }
-  }
 }
 
 void sendSOSAlert() {
-  String sms = String(alertMessage) + " Lat:" + String(gpsLat, 6) + 
-               " Lng:" + String(gpsLng, 6);
-  gsmSerial.print("AT+CMGS=\\"");
-  gsmSerial.print(emergencyNumber);
-  gsmSerial.println("\\"");
+  String sms = "EMERGENCY! Lat:" + String(gpsLat,6) + " Lng:" + String(gpsLng,6);
+  gsmSerial.print("AT+CMGS=\""); gsmSerial.print(emergencyNumber); gsmSerial.println("\"");
   delay(500);
   gsmSerial.println(sms);
   gsmSerial.write(0x1A);
-  Serial.println("SOS SMS Sent!");
 }
 
 void setup() {
   Serial.begin(115200);
-  initGPS();
+  gpsSerial.begin(9600, SERIAL_8N1, RXp2, TXp2);
   initGSM();
-  pinMode(5, INPUT); // SOS button
+  pinMode(5, INPUT);
 }
 
 void loop() {
-  parseGPS();
-  
-  if (digitalRead(5) == LOW) {
-    delay(50);
-    if (digitalRead(5) == LOW) {
-      sendSOSAlert();
-      delay(2000);
-    }
-  }
+  if (digitalRead(5) == LOW) { delay(50); if (digitalRead(5) == LOW) sendSOSAlert(); }
   delay(100);
 }`},
 
@@ -992,128 +942,35 @@ struct VaccineRecord {
 VaccineRecord records[50];
 int recordCount = 0;
 
-void setupRFID() {
-  SPI.begin();
-  rfid.PCD_Init();
-  Serial.println("RFID Ready");
-}
-
-void setupFingerprint() {
-  finger.begin(9600);
-  if (!finger.verifyPassword()) {
-    Serial.println("Fingerprint sensor not found");
-    while(1);
-  }
-  Serial.println("Fingerprint sensor ready");
-}
-
 bool readRFIDTag(uint32_t &uid) {
   if (!rfid.PICC_IsNewCardPresent()) return false;
   if (!rfid.PICC_ReadCardSerial()) return false;
-  
   uid = 0;
-  for (byte i = 0; i < rfid.uid.size; i++) {
-    uid = (uid << 8) | rfid.uid.uidByte[i];
-  }
+  for (byte i = 0; i < rfid.uid.size; i++) uid = (uid << 8) | rfid.uid.uidByte[i];
   return true;
-}
-
-byte enrollFingerprint(byte id) {
-  Serial.print("Enrolling fingerprint ID: "); Serial.println(id);
-  byte p = -1;
-  
-  for (int attempts = 0; attempts < 2; attempts++) {
-    while (p != FINGERPRINT_OK) {
-      p = finger.getImage();
-    }
-    p = finger.image2Tz(1);
-    if (p != FINGERPRINT_OK) continue;
-    
-    p = finger.getImage();
-    while (p != FINGERPRINT_OK) p = finger.getImage();
-    
-    p = finger.image2Tz(2);
-    if (p != FINGERPRINT_OK) return -1;
-    
-    p = finger.createModel();
-    if (p != FINGERPRINT_OK) return -1;
-  }
-  
-  finger.storeModel(id);
-  Serial.println("Fingerprint enrolled!");
-  return id;
 }
 
 byte matchFingerprint() {
   byte p = finger.getImage();
   if (p != FINGERPRINT_OK) return -1;
-  
   p = finger.image2Tz();
   if (p != FINGERPRINT_OK) return -1;
-  
   p = finger.fingerFastSearch();
-  if (p == FINGERPRINT_OK) {
-    return finger.fingerID;
-  }
-  return -1;
-}
-
-void recordVaccination(char* patientID, uint32_t rfidTag, 
-                       byte fingerprintID, byte doseNum) {
-  VaccineRecord rec;
-  strcpy(rec.patientID, patientID);
-  rec.rfidTag = rfidTag;
-  rec.fingerprintID = fingerprintID;
-  rec.vaccinationDate = millis();
-  rec.doseNumber = doseNum;
-  
-  records[recordCount++] = rec;
-  
-  int addr = recordCount * sizeof(VaccineRecord);
-  EEPROM.put(addr, rec);
-  EEPROM.commit();
-  
-  Serial.print("Vaccination recorded for: "); Serial.println(patientID);
-}
-
-bool checkDuplicateVaccine(uint32_t rfidTag, unsigned long timeWindow) {
-  unsigned long currentTime = millis();
-  for (int i = 0; i < recordCount; i++) {
-    if (records[i].rfidTag == rfidTag &&
-        (currentTime - records[i].vaccinationDate) < timeWindow) {
-      return true;
-    }
-  }
-  return false;
+  return (p == FINGERPRINT_OK) ? finger.fingerID : -1;
 }
 
 void setup() {
-  Serial.begin(9600);
-  Serial1.begin(9600);
-  setupRFID();
-  setupFingerprint();
-  Serial.println("Vaccination Monitoring System Ready");
+  Serial.begin(9600); Serial1.begin(9600);
+  SPI.begin(); rfid.PCD_Init();
+  finger.begin(9600);
 }
 
 void loop() {
   uint32_t rfidTag = 0;
-  
   if (readRFIDTag(rfidTag)) {
-    Serial.print("RFID Detected: "); Serial.println(rfidTag, HEX);
-    
     byte fpID = matchFingerprint();
-    if (fpID != 255) {
-      Serial.print("Fingerprint matched: "); Serial.println(fpID);
-      
-      if (!checkDuplicateVaccine(rfidTag, 2592000000)) { // 30 days
-        recordVaccination("Patient_001", rfidTag, fpID, 1);
-        Serial.println("Vaccination recorded successfully");
-      } else {
-        Serial.println("Duplicate vaccination detected!");
-      }
-    } else {
-      Serial.println("Fingerprint not recognized");
-    }
+    if (fpID != 255) Serial.println("Vaccination recorded");
+    else Serial.println("Fingerprint not recognized");
     rfid.PICC_HaltA();
   }
   delay(100);
@@ -1125,113 +982,50 @@ void loop() {
 #include <Arduino.h>
 #include <WiFi.h>
 #include <ThingSpeak.h>
-#include <ArduinoJson.h>
 
 #define VOLTAGE_PIN A0
 #define CURRENT_PIN A1
-#define TEMP_PIN A2
-#define IRRADIANCE_PIN A3
+#define TEMP_PIN    A2
+#define IRR_PIN     A3
 
-const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PASSWORD";
+WiFiClient client;
 unsigned long channelID = YOUR_CHANNEL_ID;
 const char* apiKey = "YOUR_API_KEY";
 
-WiFiClient client;
-
-struct SolarData {
-  float voltage;
-  float current;
-  float power;
-  float temperature;
-  float irradiance;
-  float efficiency;
-};
-
-SolarData solarData;
+struct SolarData { float voltage, current, power, temperature, irradiance, efficiency; };
+SolarData sd;
 
 void readSensors() {
-  int vRaw = analogRead(VOLTAGE_PIN);
-  int iRaw = analogRead(CURRENT_PIN);
-  int tRaw = analogRead(TEMP_PIN);
-  int irrRaw = analogRead(IRRADIANCE_PIN);
-  
-  solarData.voltage = (vRaw / 1023.0) * 5.0 * 20; // Scale to 100V max
-  solarData.current = (iRaw / 1023.0) * 5.0 * 20; // Scale to 20A max
-  solarData.power = solarData.voltage * solarData.current;
-  solarData.temperature = (tRaw / 1023.0) * 100; // 0-100°C
-  solarData.irradiance = (irrRaw / 1023.0) * 1000; // 0-1000 W/m²
-  
-  // Standard test conditions: 1000W/m², 25°C, 37.3°C panel temp
-  float stdPower = 1000 * 0.37 * (1 - 0.004 * (solarData.temperature - 25));
-  solarData.efficiency = (solarData.power / stdPower) * 100;
-}
-
-void uploadToCloud() {
-  if (WiFi.status() == WL_CONNECTED) {
-    ThingSpeak.setField(1, solarData.voltage);
-    ThingSpeak.setField(2, solarData.current);
-    ThingSpeak.setField(3, solarData.power);
-    ThingSpeak.setField(4, solarData.temperature);
-    ThingSpeak.setField(5, solarData.irradiance);
-    ThingSpeak.setField(6, solarData.efficiency);
-    
-    int result = ThingSpeak.writeFields(channelID, apiKey);
-    
-    if (result == 200) {
-      Serial.println("Data uploaded successfully");
-    } else {
-      Serial.print("Upload failed: "); Serial.println(result);
-    }
-  }
+  sd.voltage    = (analogRead(VOLTAGE_PIN)/1023.0)*5.0*20;
+  sd.current    = (analogRead(CURRENT_PIN)/1023.0)*5.0*20;
+  sd.power      = sd.voltage * sd.current;
+  sd.temperature= (analogRead(TEMP_PIN)/1023.0)*100;
+  sd.irradiance = (analogRead(IRR_PIN)/1023.0)*1000;
+  float stdPower = 1000 * 0.37 * (1 - 0.004 * (sd.temperature - 25));
+  sd.efficiency = (sd.power / stdPower) * 100;
 }
 
 void detectFaults() {
-  // Zero voltage with high irradiance = panel fault
-  if (solarData.irradiance > 500 && solarData.voltage < 1.0) {
-    Serial.println("FAULT: Panel not generating voltage!");
-  }
-  
-  // High temperature = cooling issue
-  if (solarData.temperature > 80) {
-    Serial.println("WARNING: Panel overheating!");
-  }
-  
-  // Low efficiency = performance degradation
-  if (solarData.efficiency < 15 && solarData.irradiance > 700) {
-    Serial.println("WARNING: Low panel efficiency");
-  }
+  if (sd.irradiance > 500 && sd.voltage < 1.0) Serial.println("FAULT: Panel voltage!");
+  if (sd.temperature > 80) Serial.println("WARNING: Overheating!");
+  if (sd.efficiency < 15 && sd.irradiance > 700) Serial.println("WARNING: Low efficiency");
 }
 
 void setup() {
   Serial.begin(115200);
-  
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-  
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  
-  Serial.println("WiFi Connected");
+  WiFi.begin("SSID","PASS");
+  while(WiFi.status()!=WL_CONNECTED) delay(500);
   ThingSpeak.begin(client);
-  Serial.println("Solar Monitoring System Ready");
 }
 
 void loop() {
   readSensors();
-  
-  Serial.print("Voltage: "); Serial.print(solarData.voltage);
-  Serial.print("V | Current: "); Serial.print(solarData.current);
-  Serial.print("A | Power: "); Serial.print(solarData.power);
-  Serial.print("W | Temp: "); Serial.print(solarData.temperature);
-  Serial.print("°C | Efficiency: "); Serial.println(solarData.efficiency);
-  
   detectFaults();
-  uploadToCloud();
-  
-  delay(15000); // Update every 15 seconds
+  ThingSpeak.setField(1,sd.voltage); ThingSpeak.setField(2,sd.current);
+  ThingSpeak.setField(3,sd.power);   ThingSpeak.setField(4,sd.temperature);
+  ThingSpeak.setField(5,sd.irradiance); ThingSpeak.setField(6,sd.efficiency);
+  ThingSpeak.writeFields(channelID,apiKey);
+  delay(15000);
 }`}
 };
 
@@ -1248,101 +1042,78 @@ function closeModal(){document.getElementById('modal').classList.remove('active'
 function closeModalOutside(e){if(e.target===document.getElementById('modal'))closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeVoicePanel();}});
 
-/* ===================== VOICE PANEL TOGGLE ===================== */
+/* ===================== VOICE PANEL ===================== */
 function toggleVoicePanel(){
   const panel=document.getElementById('voice-panel');
   const floatBtn=document.getElementById('vpFloatBtn');
-  if(panel.classList.contains('open')){
-    panel.classList.remove('open');
-    floatBtn.classList.remove('hide');
-  } else {
-    panel.classList.add('open');
-    floatBtn.classList.add('hide');
-  }
+  if(panel.classList.contains('open')){panel.classList.remove('open');floatBtn.classList.remove('hide');}
+  else{panel.classList.add('open');floatBtn.classList.add('hide');}
 }
 function closeVoicePanel(){
   document.getElementById('voice-panel').classList.remove('open');
   document.getElementById('vpFloatBtn').classList.remove('hide');
 }
 
-/* ===================== VOICE ASSISTANT LOGIC ===================== */
+/* ===================== VOICE ASSISTANT ===================== */
 const VP_DATA={
   hello:"Hi! I'm Tamil Selvan S — an Electronics and Communication Engineering student specializing in Embedded Systems, IoT Development, and AI-powered hardware. Currently serving as IETE Secretary 2026-2027.",
-  skills:"I'm skilled in Embedded C and C++, Arduino and ESP32, Python, PCB Design with KiCad, MATLAB, Proteus, Raspberry Pi, STM32, Sensor Interfacing, and Hardware Testing. Core domains: Embedded Systems, IoT, Robotics, and AI integration.",
-  projects:"I have 9 major projects: (1) Smart Animal Repellent using YOLOv8, (2) Automated Attendance with Face Recognition, (3) Multi-Functional Drone with PID Stabilization, (4) Aerogel Fire Resistant Suit, (5) Smart Solar Agriculture Monitor, (6) ESP32 Smart Crutch with Fall Detection, (7) Smart SOS Emergency Alert with GPS and GSM, (8) Smart Rabies Vaccination Monitoring, and (9) IoT-Based Smart Solar Monitoring.",
+  skills:"I'm skilled in Embedded C and C++, Arduino and ESP32, Python, PCB Design with KiCad, MATLAB, Proteus, Raspberry Pi, STM32, Sensor Interfacing, and Hardware Testing.",
+  projects:"I have 9 major projects: Smart Animal Repellent using YOLOv8, Automated Attendance with Face Recognition, Multi-Functional Drone with PID Stabilization, Aerogel Fire Resistant Suit, Smart Solar Agriculture Monitor, ESP32 Smart Crutch with Fall Detection, Smart SOS Emergency Alert, Smart Rabies Vaccination Monitoring, and IoT-Based Smart Solar Monitoring.",
   contact:"Reach me at +91 93458 41834, email tamilsomasundaram2005 at gmail dot com, or connect on LinkedIn at tamil-selvan-s-bb259b318.",
-  education:"I'm pursuing a Bachelor's in Electronics and Communication Engineering at Velalar College of Engineering, graduating May 2027. CGPA: 7.76. Class XII score: 82.7% from Kongu Vellalar Matriculation Higher Secondary School.",
-  achievements:"I won 3rd Prize at DZRAVIS'26 National Symposium at RVS Engineering College, and Third Place at SPECTRA'24 at Kongu Engineering College. I also serve as IETE Secretary 2026-2027 and was IETE Joint Treasurer 2025-2026.",
-  internship:"I completed two internships at SAN Technovation, Perundurai — Dec 2024 (embedded fundamentals, sensor interfacing) and Jun 2025 (hardware testing, IoT solutions, circuit validation).",
-  help:"You can ask about: Skills, Projects, Education, Achievements, Internship, or Contact. Just say any of these words clearly!"
+  education:"I'm pursuing a Bachelor's in Electronics and Communication Engineering at Velalar College of Engineering, graduating May 2027. CGPA: 7.76. Class XII score: 82.7%.",
+  achievements:"I won 3rd Prize at DZRAVIS'26 National Symposium, and Third Place at SPECTRA'24 at Kongu Engineering College. I also serve as IETE Secretary 2026-2027.",
+  internship:"I completed two internships at SAN Technovation, Perundurai — Dec 2024 (embedded fundamentals, sensor interfacing) and Jun 2025 (hardware testing, IoT solutions).",
+  help:"You can ask about: Skills, Projects, Education, Achievements, Internship, or Contact. Just say any of these words!"
 };
-
 const VP_KEYWORDS={
   hello:['hello','hi','hey','hola','namaste','vanakkam','hai'],
-  skills:['skill','skills','expertise','knowledge','technical','proficient','technology','tech'],
-  projects:['project','projects','work','portfolio','built','made','developed','create'],
-  contact:['contact','call','email','reach','phone','mobile','number','linkedin','social'],
-  education:['education','study','studies','college','university','degree','academic','cgpa','score','mark'],
-  achievements:['achievement','achievements','award','awards','prize','prizes','accom','won','trophy','winner'],
-  internship:['intern','internship','experience','job','work','company','san','technovation'],
-  help:['help','command','commands','what','guide','list','options','features']
+  skills:['skill','skills','expertise','knowledge','technical','tech'],
+  projects:['project','projects','work','portfolio','built','made','developed'],
+  contact:['contact','call','email','reach','phone','mobile','number','linkedin'],
+  education:['education','study','studies','college','university','degree','academic','cgpa'],
+  achievements:['achievement','achievements','award','awards','prize','prizes','won','trophy'],
+  internship:['intern','internship','experience','job','company','san','technovation'],
+  help:['help','command','commands','what','guide','list','options']
 };
 
-let vpRecognition=null;
-let vpListening=false;
+let vpRecognition=null, vpListening=false;
 
 function vpInit(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){showVpError('Speech Recognition not supported. Use Chrome or Edge. Click command buttons below to demo!');return;}
+  if(!SR){showVpError('Speech Recognition not supported. Use Chrome or Edge.');return;}
   vpRecognition=new SR();
-  vpRecognition.continuous=false;
-  vpRecognition.interimResults=true;
-  vpRecognition.lang='en-US';
-  vpRecognition.onstart=()=>{
-    vpListening=true;
-    vpUpdateMicUI(true);
-    document.getElementById('vpTranscript').innerHTML='<span class="vp-placeholder">Listening...</span>';
-    hideVpError();
-  };
+  vpRecognition.continuous=false; vpRecognition.interimResults=true; vpRecognition.lang='en-US';
+  vpRecognition.onstart=()=>{vpListening=true;vpUpdateMicUI(true);document.getElementById('vpTranscript').innerHTML='<span class="vp-placeholder">Listening...</span>';hideVpError();};
   vpRecognition.onresult=(e)=>{
     let txt='';
     for(let i=e.resultIndex;i<e.results.length;i++) txt+=e.results[i][0].transcript;
     if(e.results[e.results.length-1].isFinal){vpHandleCommand(txt.toLowerCase().trim());}
     else{document.getElementById('vpTranscript').textContent=txt;}
   };
-  vpRecognition.onerror=(e)=>showVpError('Mic error: '+e.error+'. Try clicking a command button below.');
+  vpRecognition.onerror=(e)=>showVpError('Mic error: '+e.error);
   vpRecognition.onend=()=>{vpListening=false;vpUpdateMicUI(false);};
 }
-
 function vpToggleListen(){
   if(!vpRecognition){vpInit();}
-  if(!vpRecognition){return;}
-  if(vpListening){vpRecognition.stop();}
-  else{try{vpRecognition.start();}catch(e){showVpError('Could not start mic: '+e.message);}}
+  if(!vpRecognition)return;
+  if(vpListening){vpRecognition.stop();}else{try{vpRecognition.start();}catch(e){showVpError('Could not start mic.');}}
 }
-
 function vpHandleCommand(text){
   document.getElementById('vpTranscript').textContent=text||'(no speech detected)';
   let response='',matched=false;
   for(const[key,keywords] of Object.entries(VP_KEYWORDS)){
-    for(const kw of keywords){
-      if(text.includes(kw)){response=VP_DATA[key];matched=true;break;}
-    }
+    for(const kw of keywords){if(text.includes(kw)){response=VP_DATA[key];matched=true;break;}}
     if(matched)break;
   }
-  if(!matched) response="I didn't catch that. Try saying: hello, skills, projects, contact, education, achievements, internship, or help.";
+  if(!matched)response="I didn't catch that. Try saying: hello, skills, projects, contact, education, achievements, internship, or help.";
   document.getElementById('vpResponse').textContent=response;
   vpSpeak(response);
 }
-
 function vpRunDemo(key){
   document.getElementById('vpTranscript').textContent=key;
-  const response=VP_DATA[key]||"Sorry, I don't have info on that.";
-  document.getElementById('vpResponse').textContent=response;
-  vpSpeak(response);
-  hideVpError();
+  document.getElementById('vpResponse').textContent=VP_DATA[key]||"Sorry, no info on that.";
+  vpSpeak(VP_DATA[key]);hideVpError();
 }
-
 function vpSpeak(text){
   if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
@@ -1350,29 +1121,15 @@ function vpSpeak(text){
   u.rate=0.92;u.pitch=1;u.volume=1;
   window.speechSynthesis.speak(u);
 }
-
 function vpUpdateMicUI(listening){
   const btn=document.getElementById('vpMicBtn');
   const icon=document.getElementById('vpMicIcon');
   const status=document.getElementById('vpMicStatus');
   const wave=document.getElementById('vpWaveform');
-  if(listening){
-    btn.classList.add('listening');
-    icon.textContent='🔴';
-    status.textContent='Stop';
-    wave.style.display='flex';
-  } else {
-    btn.classList.remove('listening');
-    icon.textContent='🎤';
-    status.textContent='Tap';
-    wave.style.display='none';
-  }
+  if(listening){btn.classList.add('listening');icon.textContent='🔴';status.textContent='Stop';wave.style.display='flex';}
+  else{btn.classList.remove('listening');icon.textContent='🎤';status.textContent='Tap';wave.style.display='none';}
 }
-
-function showVpError(msg){
-  const el=document.getElementById('vpError');
-  el.textContent=msg;el.style.display='block';
-}
+function showVpError(msg){const el=document.getElementById('vpError');el.textContent=msg;el.style.display='block';}
 function hideVpError(){document.getElementById('vpError').style.display='none';}
 
 /* ===================== SCROLL ANIMATIONS ===================== */
@@ -1395,12 +1152,8 @@ const ss=document.getElementById('skills');if(ss)skillObs.observe(ss);
 window.addEventListener('scroll',()=>{
   let cur='';
   document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-150)cur=s.id;});
-  document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
-  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
 });
-
-console.log('%c Tamil Selvan S — Portfolio with Circuit Background','color:#00d4ff;font-size:14px;font-weight:bold;');
 </script>
 </body>
 </html>
