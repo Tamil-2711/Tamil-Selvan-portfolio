@@ -147,7 +147,7 @@ section{position:relative;z-index:1;padding:6rem 2rem}
 /* ===== PROJECT MODAL ===== */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(3,8,18,.96);backdrop-filter:blur(8px)}
 .modal-overlay.active{display:flex;align-items:center;justify-content:center;padding:2rem}
-.modal-box{background:var(--bg-mid);border:1px solid var(--border);border-radius:16px;width:100%;max-width:800px;max-height:85vh;overflow-y:auto;padding:2.5rem;box-shadow:0 0 60px rgba(0,212,255,.2);animation:slideUp .3s ease}
+.modal-box{background:var(--bg-mid);border:1px solid var(--border);border-radius:16px;width:100%;max-width:900px;max-height:85vh;overflow-y:auto;padding:2.5rem;box-shadow:0 0 60px rgba(0,212,255,.2);animation:slideUp .3s ease}
 @keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
 .modal-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;border-bottom:1px solid var(--border);padding-bottom:1.5rem}
 .modal-top h2{color:var(--primary);font-size:1.3rem;line-height:1.4;max-width:680px}
@@ -155,7 +155,7 @@ section{position:relative;z-index:1;padding:6rem 2rem}
 .modal-close:hover{border-color:var(--primary);color:var(--primary)}
 .modal-tech{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
 .modal-tech span{background:rgba(0,212,255,.1);border:1px solid var(--border);padding:.3rem .7rem;border-radius:6px;font-size:.8rem;color:var(--primary);font-family:'JetBrains Mono',monospace}
-.modal-code pre{background:rgba(0,0,0,.6);border:1px solid var(--border);border-radius:10px;padding:1.5rem;overflow-x:auto;font-size:.78rem;line-height:1.6;color:var(--primary);font-family:'JetBrains Mono',monospace;white-space:pre-wrap}
+.modal-code pre{background:rgba(0,0,0,.6);border:1px solid var(--border);border-radius:10px;padding:1.5rem;overflow-x:auto;font-size:.75rem;line-height:1.5;color:var(--primary);font-family:'JetBrains Mono',monospace;white-space:pre-wrap;max-height:400px}
 
 /* ===== VOICE ASSISTANT PANEL ===== */
 #voice-panel{
@@ -267,6 +267,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#freelancing">Freelancing</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><button class="voice-nav-btn" onclick="toggleVoicePanel()">🎤 Voice</button></li>
@@ -317,7 +318,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
         </div>
         <div class="stat-boxes">
           <div class="stat-box"><div class="num">7.76</div><div class="lbl">CGPA</div></div>
-          <div class="stat-box"><div class="num">5+</div><div class="lbl">Projects</div></div>
+          <div class="stat-box"><div class="num">9+</div><div class="lbl">Projects</div></div>
           <div class="stat-box"><div class="num">82.7%</div><div class="lbl">Class XII</div></div>
           <div class="stat-box"><div class="num">2x</div><div class="lbl">Awards</div></div>
         </div>
@@ -448,6 +449,48 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
         <div class="proj-tags"><span class="ptag">Arduino</span><span class="ptag">ESP32</span><span class="ptag">ThingSpeak</span><span class="ptag">Solar</span></div>
         <button class="btn-code">View Code →</button>
       </div>
+       </div>
+  </div>
+</section>
+
+<!-- FREELANCING PROJECTS -->
+<section id="freelancing" style="background:rgba(124,58,237,.15)">
+  <div class="container">
+    <span class="section-label">04A. Freelancing Portfolio</span>
+    <h2 class="section-title">Client Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card reveal" onclick="openModal(6)" style="border-left: 3px solid #7c3aed">
+        <span class="proj-num">F1</span>
+        <span class="proj-icon">🚶</span>
+        <h3>ESP32 Smart Crutch with Fall Detection</h3>
+        <p>Advanced assistive device with IMU-based fall detection, emergency alerts, and real-time user safety monitoring for elderly care.</p>
+        <div class="proj-tags"><span class="ptag">ESP32</span><span class="ptag">MPU6050</span><span class="ptag">IoT</span><span class="ptag">Alert System</span></div>
+        <button class="btn-code">View Code →</button>
+      </div>
+      <div class="project-card reveal" style="animation-delay:.1s; border-left: 3px solid #7c3aed" onclick="openModal(7)">
+        <span class="proj-num">F2</span>
+        <span class="proj-icon">🆘</span>
+        <h3>Smart SOS Emergency Alert System</h3>
+        <p>ESP32-powered emergency response system with GPS location tracking and GSM SMS/Call notifications for rapid emergency response.</p>
+        <div class="proj-tags"><span class="ptag">ESP32</span><span class="ptag">GPS</span><span class="ptag">GSM</span><span class="ptag">Emergency</span></div>
+        <button class="btn-code">View Code →</button>
+      </div>
+      <div class="project-card reveal" style="animation-delay:.2s; border-left: 3px solid #7c3aed" onclick="openModal(8)">
+        <span class="proj-num">F3</span>
+        <span class="proj-icon">💉</span>
+        <h3>Smart Rabies Vaccination Monitoring</h3>
+        <p>RFID and fingerprint-based system for tracking immunization records with biometric verification to prevent duplicate vaccinations.</p>
+        <div class="proj-tags"><span class="ptag">RFID</span><span class="ptag">Fingerprint</span><span class="ptag">Arduino</span><span class="ptag">Database</span></div>
+        <button class="btn-code">View Code →</button>
+      </div>
+      <div class="project-card reveal" style="animation-delay:.3s; border-left: 3px solid #7c3aed" onclick="openModal(9)">
+        <span class="proj-num">F4</span>
+        <span class="proj-icon">☀️</span>
+        <h3>IoT-Based Smart Solar Monitoring System</h3>
+        <p>Complete solar panel management system with real-time performance analytics, fault detection, and cloud integration for monitoring.</p>
+        <div class="proj-tags"><span class="ptag">Arduino</span><span class="ptag">IoT</span><span class="ptag">Cloud</span><span class="ptag">Sensors</span></div>
+        <button class="btn-code">View Code →</button>
+      </div>
     </div>
   </div>
 </section>
@@ -553,7 +596,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2r
         <div class="vp-cmd-item" onclick="vpRunDemo('projects')"><span class="vp-cmd-trigger">"Projects"</span><span class="vp-cmd-desc">My projects</span></div>
         <div class="vp-cmd-item" onclick="vpRunDemo('contact')"><span class="vp-cmd-trigger">"Contact"</span><span class="vp-cmd-desc">Contact info</span></div>
         <div class="vp-cmd-item" onclick="vpRunDemo('education')"><span class="vp-cmd-trigger">"Education"</span><span class="vp-cmd-desc">Academic background</span></div>
-        <div class="vp-cmd-item" onclick="vpRunDemo('achievements')"><span class="vp-cmd-trigger">"Achievements"</span><span class="vp-cmd-desc">Awards &amp; roles</span></div>
+        <div class="vp-cmd-item" onclick="vpRunDemo('achievements')"><span class="vp-cmd-trigger">"Achievements"</span><span class="vp-cmd-desc">Awards & roles</span></div>
         <div class="vp-cmd-item" onclick="vpRunDemo('internship')"><span class="vp-cmd-trigger">"Internship"</span><span class="vp-cmd-desc">Work experience</span></div>
         <div class="vp-cmd-item" onclick="vpRunDemo('help')"><span class="vp-cmd-trigger">"Help"</span><span class="vp-cmd-desc">All commands</span></div>
       </div>
@@ -599,6 +642,7 @@ void setup() {
 }
 
 void loop() { delay(10); }`},
+
   2:{title:"Automated Attendance System Using Face Recognition",
      tech:["Python","OpenCV","face_recognition","Raspberry Pi","ML","CSV"],
      code:`# Automated Attendance System
@@ -638,6 +682,7 @@ class AttendanceSystem:
                 self.mark_attendance(self.known_names[best])
                 return self.known_names[best], loc
         return "Unknown", None`},
+
   3:{title:"Multi-Functional Drone with PID Stabilization",
      tech:["Arduino","MPU6050","Servo","I2C","PID Controller","Embedded C"],
      code:`// Multi-Functional Drone - Flight Management
@@ -677,6 +722,7 @@ void loop() {
   updateMotors(pid);
   delay(10);
 }`},
+
   4:{title:"Aerogel Based Fire Resistant Suit – Thermal Monitoring",
      tech:["Raspberry Pi","DHT22","Python","Aerogel","Thermal Sensing","JSON"],
      code:`# Aerogel Fire Resistant Suit - Thermal Monitor
@@ -718,6 +764,7 @@ while True:
     for loc,d in temps.items():
         if d['temp']: print(f"  {loc}: {d['temp']}C")
     time.sleep(2)`},
+
   5:{title:"Smart Solar Powered Agriculture Monitoring System",
      tech:["Arduino","ESP32","DHT22","Soil Moisture","ThingSpeak","IoT","Solar"],
      code:`// Smart Solar Agriculture System
@@ -754,6 +801,424 @@ void loop() {
   ThingSpeak.setField(3, hum);
   ThingSpeak.writeFields(1234567, "YOUR_KEY");
   delay(15000);
+}`},
+
+  6:{title:"ESP32-Based Smart Crutch with Fall Detection & Emergency Alert",
+     tech:["ESP32","MPU6050","WiFi","SMS Alert","Accelerometer","Embedded C"],
+     code:`// ESP32 Smart Crutch - Fall Detection System
+#include <Arduino.h>
+#include <MPU6050.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
+
+MPU6050 mpu(0x68);
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASS";
+const float FALL_THRESHOLD = 25.0; // m/s^2
+const float IMPACT_THRESHOLD = 20.0;
+
+float accelX, accelY, accelZ, gyroX, gyroY, gyroZ;
+float accelMagnitude;
+bool fallDetected = false;
+unsigned long fallTime = 0;
+
+void detectFall() {
+  mpu.getAcceleration(&accelX, &accelY, &accelZ);
+  accelMagnitude = sqrt(accelX*accelX + accelY*accelY + accelZ*accelZ);
+  
+  if (accelMagnitude > FALL_THRESHOLD) {
+    if (!fallDetected) {
+      fallDetected = true;
+      fallTime = millis();
+      Serial.println("FALL DETECTED!");
+      sendEmergencyAlert();
+    }
+  } else if (fallDetected && (millis() - fallTime) > 5000) {
+    fallDetected = false;
+  }
+}
+
+void sendEmergencyAlert() {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    String url = "http://your-api.com/alert?accel=" + 
+                 String(accelMagnitude) + "&time=" + String(millis());
+    http.begin(url);
+    int httpCode = http.GET();
+    http.end();
+    Serial.println("Alert sent!");
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  Wire.begin();
+  mpu.initialize();
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("WiFi Connected");
+}
+
+void loop() {
+  detectFall();
+  delay(50);
+}`},
+
+  7:{title:"Smart SOS Emergency Alert System with GPS & GSM",
+     tech:["ESP32","GPS Module","GSM Module","MQTT","Real-time Tracking"],
+     code:`// ESP32 SOS Emergency Alert with GPS & GSM
+#include <Arduino.h>
+#include <HardwareSerial.h>
+#include <WiFi.h>
+
+#define RXp2 16  // GPS RX
+#define TXp2 17  // GPS TX
+#define RXp1 9   // GSM RX
+#define TXp1 10  // GSM TX
+
+HardwareSerial gpsSerial(2);
+HardwareSerial gsmSerial(1);
+
+float gpsLat = 0.0, gpsLng = 0.0;
+const char* emergencyNumber = "+919345841834";
+const char* alertMessage = "EMERGENCY! I need help.";
+
+void initGPS() {
+  gpsSerial.begin(9600, SERIAL_8N1, RXp2, TXp2);
+  Serial.println("GPS Initialized");
+}
+
+void initGSM() {
+  gsmSerial.begin(9600, SERIAL_8N1, RXp1, TXp1);
+  delay(1000);
+  gsmSerial.println("AT");
+  delay(500);
+  gsmSerial.println("AT+CMGF=1");
+  delay(500);
+  Serial.println("GSM Initialized");
+}
+
+void parseGPS() {
+  while (gpsSerial.available()) {
+    String line = gpsSerial.readStringUntil('\\n');
+    if (line.startsWith("$GPRMC")) {
+      // Parse latitude & longitude from NMEA
+      int commaPos[6];
+      int count = 0;
+      for (int i = 0; i < line.length(); i++) {
+        if (line[i] == ',') {
+          commaPos[count++] = i;
+        }
+      }
+      gpsLat = line.substring(commaPos[2]+1, commaPos[3]).toFloat();
+      gpsLng = line.substring(commaPos[4]+1, commaPos[5]).toFloat();
+      Serial.print("Location: "); Serial.print(gpsLat); 
+      Serial.print(" , "); Serial.println(gpsLng);
+    }
+  }
+}
+
+void sendSOSAlert() {
+  String sms = String(alertMessage) + " Lat:" + String(gpsLat, 6) + 
+               " Lng:" + String(gpsLng, 6);
+  gsmSerial.print("AT+CMGS=\\"");
+  gsmSerial.print(emergencyNumber);
+  gsmSerial.println("\\"");
+  delay(500);
+  gsmSerial.println(sms);
+  gsmSerial.write(0x1A);
+  Serial.println("SOS SMS Sent!");
+}
+
+void setup() {
+  Serial.begin(115200);
+  initGPS();
+  initGSM();
+  pinMode(5, INPUT); // SOS button
+}
+
+void loop() {
+  parseGPS();
+  
+  if (digitalRead(5) == LOW) {
+    delay(50);
+    if (digitalRead(5) == LOW) {
+      sendSOSAlert();
+      delay(2000);
+    }
+  }
+  delay(100);
+}`},
+
+  8:{title:"Smart Rabies Vaccination Monitoring with RFID & Fingerprint",
+     tech:["Arduino","RFID-RC522","Fingerprint Sensor","EEPROM","Database"],
+     code:`// Rabies Vaccination Monitoring System
+#include <Arduino.h>
+#include <SPI.h>
+#include <MFRC522.h>
+#include <Adafruit_Fingerprint.h>
+#include <EEPROM.h>
+
+#define RST_PIN 9
+#define SS_PIN 10
+
+MFRC522 rfid(SS_PIN, RST_PIN);
+Adafruit_Fingerprint finger = Adafruit_Fingerprint(&Serial1);
+
+struct VaccineRecord {
+  char patientID[20];
+  uint32_t rfidTag;
+  byte fingerprintID;
+  unsigned long vaccinationDate;
+  byte doseNumber;
+};
+
+VaccineRecord records[50];
+int recordCount = 0;
+
+void setupRFID() {
+  SPI.begin();
+  rfid.PCD_Init();
+  Serial.println("RFID Ready");
+}
+
+void setupFingerprint() {
+  finger.begin(9600);
+  if (!finger.verifyPassword()) {
+    Serial.println("Fingerprint sensor not found");
+    while(1);
+  }
+  Serial.println("Fingerprint sensor ready");
+}
+
+bool readRFIDTag(uint32_t &uid) {
+  if (!rfid.PICC_IsNewCardPresent()) return false;
+  if (!rfid.PICC_ReadCardSerial()) return false;
+  
+  uid = 0;
+  for (byte i = 0; i < rfid.uid.size; i++) {
+    uid = (uid << 8) | rfid.uid.uidByte[i];
+  }
+  return true;
+}
+
+byte enrollFingerprint(byte id) {
+  Serial.print("Enrolling fingerprint ID: "); Serial.println(id);
+  byte p = -1;
+  
+  for (int attempts = 0; attempts < 2; attempts++) {
+    while (p != FINGERPRINT_OK) {
+      p = finger.getImage();
+    }
+    p = finger.image2Tz(1);
+    if (p != FINGERPRINT_OK) continue;
+    
+    p = finger.getImage();
+    while (p != FINGERPRINT_OK) p = finger.getImage();
+    
+    p = finger.image2Tz(2);
+    if (p != FINGERPRINT_OK) return -1;
+    
+    p = finger.createModel();
+    if (p != FINGERPRINT_OK) return -1;
+  }
+  
+  finger.storeModel(id);
+  Serial.println("Fingerprint enrolled!");
+  return id;
+}
+
+byte matchFingerprint() {
+  byte p = finger.getImage();
+  if (p != FINGERPRINT_OK) return -1;
+  
+  p = finger.image2Tz();
+  if (p != FINGERPRINT_OK) return -1;
+  
+  p = finger.fingerFastSearch();
+  if (p == FINGERPRINT_OK) {
+    return finger.fingerID;
+  }
+  return -1;
+}
+
+void recordVaccination(char* patientID, uint32_t rfidTag, 
+                       byte fingerprintID, byte doseNum) {
+  VaccineRecord rec;
+  strcpy(rec.patientID, patientID);
+  rec.rfidTag = rfidTag;
+  rec.fingerprintID = fingerprintID;
+  rec.vaccinationDate = millis();
+  rec.doseNumber = doseNum;
+  
+  records[recordCount++] = rec;
+  
+  int addr = recordCount * sizeof(VaccineRecord);
+  EEPROM.put(addr, rec);
+  EEPROM.commit();
+  
+  Serial.print("Vaccination recorded for: "); Serial.println(patientID);
+}
+
+bool checkDuplicateVaccine(uint32_t rfidTag, unsigned long timeWindow) {
+  unsigned long currentTime = millis();
+  for (int i = 0; i < recordCount; i++) {
+    if (records[i].rfidTag == rfidTag &&
+        (currentTime - records[i].vaccinationDate) < timeWindow) {
+      return true;
+    }
+  }
+  return false;
+}
+
+void setup() {
+  Serial.begin(9600);
+  Serial1.begin(9600);
+  setupRFID();
+  setupFingerprint();
+  Serial.println("Vaccination Monitoring System Ready");
+}
+
+void loop() {
+  uint32_t rfidTag = 0;
+  
+  if (readRFIDTag(rfidTag)) {
+    Serial.print("RFID Detected: "); Serial.println(rfidTag, HEX);
+    
+    byte fpID = matchFingerprint();
+    if (fpID != 255) {
+      Serial.print("Fingerprint matched: "); Serial.println(fpID);
+      
+      if (!checkDuplicateVaccine(rfidTag, 2592000000)) { // 30 days
+        recordVaccination("Patient_001", rfidTag, fpID, 1);
+        Serial.println("Vaccination recorded successfully");
+      } else {
+        Serial.println("Duplicate vaccination detected!");
+      }
+    } else {
+      Serial.println("Fingerprint not recognized");
+    }
+    rfid.PICC_HaltA();
+  }
+  delay(100);
+}`},
+
+  9:{title:"IoT-Based Smart Solar Monitoring System with Cloud Integration",
+     tech:["Arduino","Solar Sensors","ThingSpeak","Cloud","Real-time Analytics"],
+     code:`// IoT Smart Solar Monitoring System
+#include <Arduino.h>
+#include <WiFi.h>
+#include <ThingSpeak.h>
+#include <ArduinoJson.h>
+
+#define VOLTAGE_PIN A0
+#define CURRENT_PIN A1
+#define TEMP_PIN A2
+#define IRRADIANCE_PIN A3
+
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
+unsigned long channelID = YOUR_CHANNEL_ID;
+const char* apiKey = "YOUR_API_KEY";
+
+WiFiClient client;
+
+struct SolarData {
+  float voltage;
+  float current;
+  float power;
+  float temperature;
+  float irradiance;
+  float efficiency;
+};
+
+SolarData solarData;
+
+void readSensors() {
+  int vRaw = analogRead(VOLTAGE_PIN);
+  int iRaw = analogRead(CURRENT_PIN);
+  int tRaw = analogRead(TEMP_PIN);
+  int irrRaw = analogRead(IRRADIANCE_PIN);
+  
+  solarData.voltage = (vRaw / 1023.0) * 5.0 * 20; // Scale to 100V max
+  solarData.current = (iRaw / 1023.0) * 5.0 * 20; // Scale to 20A max
+  solarData.power = solarData.voltage * solarData.current;
+  solarData.temperature = (tRaw / 1023.0) * 100; // 0-100°C
+  solarData.irradiance = (irrRaw / 1023.0) * 1000; // 0-1000 W/m²
+  
+  // Standard test conditions: 1000W/m², 25°C, 37.3°C panel temp
+  float stdPower = 1000 * 0.37 * (1 - 0.004 * (solarData.temperature - 25));
+  solarData.efficiency = (solarData.power / stdPower) * 100;
+}
+
+void uploadToCloud() {
+  if (WiFi.status() == WL_CONNECTED) {
+    ThingSpeak.setField(1, solarData.voltage);
+    ThingSpeak.setField(2, solarData.current);
+    ThingSpeak.setField(3, solarData.power);
+    ThingSpeak.setField(4, solarData.temperature);
+    ThingSpeak.setField(5, solarData.irradiance);
+    ThingSpeak.setField(6, solarData.efficiency);
+    
+    int result = ThingSpeak.writeFields(channelID, apiKey);
+    
+    if (result == 200) {
+      Serial.println("Data uploaded successfully");
+    } else {
+      Serial.print("Upload failed: "); Serial.println(result);
+    }
+  }
+}
+
+void detectFaults() {
+  // Zero voltage with high irradiance = panel fault
+  if (solarData.irradiance > 500 && solarData.voltage < 1.0) {
+    Serial.println("FAULT: Panel not generating voltage!");
+  }
+  
+  // High temperature = cooling issue
+  if (solarData.temperature > 80) {
+    Serial.println("WARNING: Panel overheating!");
+  }
+  
+  // Low efficiency = performance degradation
+  if (solarData.efficiency < 15 && solarData.irradiance > 700) {
+    Serial.println("WARNING: Low panel efficiency");
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  
+  Serial.println("WiFi Connected");
+  ThingSpeak.begin(client);
+  Serial.println("Solar Monitoring System Ready");
+}
+
+void loop() {
+  readSensors();
+  
+  Serial.print("Voltage: "); Serial.print(solarData.voltage);
+  Serial.print("V | Current: "); Serial.print(solarData.current);
+  Serial.print("A | Power: "); Serial.print(solarData.power);
+  Serial.print("W | Temp: "); Serial.print(solarData.temperature);
+  Serial.print("°C | Efficiency: "); Serial.println(solarData.efficiency);
+  
+  detectFaults();
+  uploadToCloud();
+  
+  delay(15000); // Update every 15 seconds
 }`}
 };
 
@@ -791,7 +1256,7 @@ function closeVoicePanel(){
 const VP_DATA={
   hello:"Hi! I'm Tamil Selvan S — an Electronics and Communication Engineering student specializing in Embedded Systems, IoT Development, and AI-powered hardware. Currently serving as IETE Secretary 2026-2027.",
   skills:"I'm skilled in Embedded C and C++, Arduino and ESP32, Python, PCB Design with KiCad, MATLAB, Proteus, Raspberry Pi, STM32, Sensor Interfacing, and Hardware Testing. Core domains: Embedded Systems, IoT, Robotics, and AI integration.",
-  projects:"I have 5 major projects: (1) Smart Animal Repellent using YOLOv8, (2) Automated Attendance with Face Recognition, (3) Multi-Functional Drone with PID Stabilization, (4) Aerogel Fire Resistant Suit with Thermal Monitoring, and (5) Smart Solar Agriculture Monitoring System.",
+  projects:"I have 9 major projects: (1) Smart Animal Repellent using YOLOv8, (2) Automated Attendance with Face Recognition, (3) Multi-Functional Drone with PID Stabilization, (4) Aerogel Fire Resistant Suit, (5) Smart Solar Agriculture Monitor, (6) ESP32 Smart Crutch with Fall Detection, (7) Smart SOS Emergency Alert with GPS and GSM, (8) Smart Rabies Vaccination Monitoring, and (9) IoT-Based Smart Solar Monitoring.",
   contact:"Reach me at +91 93458 41834, email tamilsomasundaram2005 at gmail dot com, or connect on LinkedIn at tamil-selvan-s-bb259b318.",
   education:"I'm pursuing a Bachelor's in Electronics and Communication Engineering at Velalar College of Engineering, graduating May 2027. CGPA: 7.76. Class XII score: 82.7% from Kongu Vellalar Matriculation Higher Secondary School.",
   achievements:"I won 3rd Prize at DZRAVIS'26 National Symposium at RVS Engineering College, and Third Place at SPECTRA'24 at Kongu Engineering College. I also serve as IETE Secretary 2026-2027 and was IETE Joint Treasurer 2025-2026.",
